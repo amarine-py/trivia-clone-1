@@ -1,7 +1,11 @@
+import StartNewGame from "./StartNewGame";
+import JoinGame from "./JoinGame";
+
 export default function Home() {
     return (
-        <div className="Home">
-            <p>Trivia Game!</p>
+        <div id="home">
+            <StartNewGame />
+            <JoinGame />
         </div>
     );
 }
