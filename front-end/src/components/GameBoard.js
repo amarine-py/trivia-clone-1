@@ -1,5 +1,6 @@
 import ClueBox from "./ClueBox";
 import ValueBox from "./ValueBox";
+import ClueView from "./ClueView";
 import { useState, useEffect } from "react";
 import { fetchRandomQuestionsByNumAndRound } from "../services/gameAPI";
 
@@ -34,11 +35,20 @@ export default function GameBoard({ questions, round, updateScores }) {
   ];
   //   const [turn, setTurn] = useState(Math.floor(Math.random() * 3)); // This should equate to 0, 1, or 2
   const [showClue, setShowClue] = useState(false);
+  const [displayClueInfo, setDisplayClueInfo] = useState(null);
+  var clueTimer;
 
-  function click(question) {
+  function clickClue(question) {
     setShowClue(true);
     console.log("show clue!!!");
     console.log(question.id);
+    setDisplayClueInfo(question);
+  }
+
+  function onCancel() {
+    clearTimeout(clueTimer);
+    setShowClue(false);
+    setDisplayClueInfo(null);
   }
 
   if (!questions) {
@@ -52,10 +62,7 @@ export default function GameBoard({ questions, round, updateScores }) {
   return (
     <>
       {showClue ? (
-        <div>
-          <p>This is the clue view!</p>
-          <button onClick={() => setShowClue(false)}>Cancel</button>
-        </div>
+        <ClueView clue={displayClueInfo} onCancel={onCancel} />
       ) : (
         <div id="game-board" className="game-board-main">
           <div className="value-row">
@@ -69,7 +76,7 @@ export default function GameBoard({ questions, round, updateScores }) {
                 <ClueBox
                   key={q.id}
                   questionData={q}
-                  onClick={click}
+                  onClick={() => clickClue(q)}
                 />
               );
             })}
