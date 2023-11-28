@@ -5,7 +5,6 @@ export default function ClueBox({questionData, onClick}) {
   const { question, answer, category, value } = questionData;
 
   function doClick() {
-    console.log("do click");
     onClick(questionData);
   }
 

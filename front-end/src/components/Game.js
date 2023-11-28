@@ -4,7 +4,6 @@ import GameBoard from "./GameBoard";
 
 export default function Game() {
   const [questions, setQuestions] = useState(null);
-//   const [player1, player2, player3] = playerNames;
   const [scores, setScores] = useState([0, 0, 0]);
   const [round, setRound] = useState(1);
 
@@ -14,17 +13,27 @@ export default function Game() {
     });
   }, [round]);
 
-  function updateScores(correct, incorrect, value) {
-    let updatedScores = scores.slice();
-    if (correct) {
-      updatedScores[correct] += value;
+  function updateScores(scoreReport) {
+    let updatedQuestions = questions.slice();
+    for (let i = 0; i < updatedQuestions.length; i++) {
+        if (updatedQuestions[i].id === scoreReport.id) {
+            updatedQuestions[i].category.title = null;
+            setQuestions(updatedQuestions);
+        }
     }
-    if (incorrect) {
-      for (let idx of incorrect) {
-        updatedScores[idx] -= value;
+
+    let updatedScores = scores.slice();
+    if (scoreReport.correct >= 0) {
+      updatedScores[scoreReport.correct] += scoreReport.value;
+    }
+    if (scoreReport.incorrect.length > 0) {
+      for (let idx of scoreReport.incorrect) {
+        updatedScores[idx] -= scoreReport.value;
       }
     }
     setScores(updatedScores);
+    console.log(`finished updating scores: ${scores}, correct: ${scoreReport.correct}, 
+    incorrect: ${scoreReport.incorrect}, value: ${scoreReport.value}, clueId: ${scoreReport.id}`);
   }
 
   return (

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function AnswerModal({ clue, player, handleAnswer, setIsOpen }) {
+export default function AnswerModal({ clue, player, handleAnswer, setShowModal }) {
   const { value, question, answer } = clue;
 
   return (
