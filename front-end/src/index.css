@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Swiss-911";
+  src: url("http://localhost:3000/fonts/swiss-911.otf");
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,6 +10,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: black;
 }
 
 code {
@@ -15,7 +21,7 @@ code {
 header {
   width: 100%;
   height: 50px;
-  background-color: #1b1b32;
+  background-color: #060ce9;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -29,10 +35,20 @@ a {
 }
 
 h1 {
-  color: #f1be32;
-  font-size: min(5vw, 1.2em);
+  font-family: "Swiss-911";
+  color: #ffcc00;
+  font-size: min(8vw, 2em);
   text-align: center;
-  font-family: Verdana, Tahoma;
+  text-shadow: 3px 3px black;
+  letter-spacing: 0.15rem;
+}
+
+.game-board-main {
+  margin: 80px 0;
+  background-color: black;
+  width: 100%;
+  height: 100vh;
+  color: white;
 }
 
 nav {
@@ -65,26 +81,77 @@ nav > ul > li > a:hover {
   cursor: pointer;
 }
 
+#home-wrapper {
+  background-color: black;
+  height: 100vh;
+}
+
 #home {
   display: flex;
   flex-direction: row;
-  margin: 50px auto;
+  margin: auto;
+  margin-top: 50px;
   align-items: center;
   justify-content: space-between;
   max-width: 50vw;
   width: 100%;
   padding: 150px;
+  background-color: black;
 }
 
 #start-new-game, #join-game {
   max-width: 300px;
   width: 100%;
-  height: 600px;
-  border: 3px solid black;
+  height: 300px;
+  border: 3px solid white;
   border-radius: 10px;
   justify-content: center;
   align-items: center;
   text-align: center;
   display: flex;
+  background-color: #060ce9;
+}
 
+.loading-wrapper {
+  margin: 100px;
+}
+
+.value-text, .clue-box-value {
+  font-family: "Swiss-911";
+  color: #ffcc00;
+  font-size: 2.5rem;
+  text-shadow: 5px 5px black;  
+}
+
+.clue-box-category {
+  font-family: "Swiss-911";
+  font-size: 2rem;
+  color: white;
+  text-transform: uppercase;
+  text-shadow: 4px 4px black;
+}
+
+#start-new-game, #join-game {
+  font-size: 2em;
+  text-shadow: 5px 5px black;  
+  letter-spacing: 0.125rem;
+}
+
+.clue-box, .value-box {
+  width: 19vh;
+  height: 14vh;
+  background-color: #060ce9;
+  border: 3px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 0;
+}
+
+.board-layout, .value-row {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  gap: 0;
+  justify-content: center;
 }

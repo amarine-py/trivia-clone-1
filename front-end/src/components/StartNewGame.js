@@ -4,7 +4,7 @@ export default function StartNewGame() {
 
     return (
         <div id="start-new-game">
-            <Link to="/new-game" >Start New Game</Link>
+            <Link className="value-text" id="start-new-game" to="/new-game" >Start New Game</Link>
         </div>
     );
 }
