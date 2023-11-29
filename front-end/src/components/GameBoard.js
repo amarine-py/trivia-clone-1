@@ -39,9 +39,13 @@ export default function GameBoard({ questions, round, updateScores }) {
   return (
     <>
       {showClue ? (
-        <ClueView clue={displayClueInfo} onCancel={onCancel} onAnswer={handleClueAnswer} />
+        <ClueView
+          clue={displayClueInfo}
+          onCancel={onCancel}
+          onAnswer={handleClueAnswer}
+        />
       ) : (
-        <div id="game-board" className="game-board-main">
+        <div className="game-board-wrapper">
           <div className="value-row">
             {values.map((v) => {
               return <ValueBox key={v} value={v} />;
