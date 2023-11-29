@@ -1,11 +1,14 @@
 import PlayerScoreBoard from "./PlayerScoreBoard";
+import { useContext } from "react";
+import PlayerContext from "../context/PlayerContext";
 
-export default function GameStatusBoard({playerNames, scores, round}) {
+export default function GameStatusBoard({scores, round}) {
+  const playerNames = useContext(PlayerContext);
 
     return (
         <div className="game-status-wrapper">
           <div className="round-status">
-            <p className="round-status-text">{round}</p>
+            <p className="round-status-text">{`Round: ${round}`}</p>
           </div>
         <div className="game-scores">
           <PlayerScoreBoard playerName={playerNames[0]} score={scores[0]} />

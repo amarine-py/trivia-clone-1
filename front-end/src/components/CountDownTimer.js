@@ -16,7 +16,8 @@ export default function CountDownTimer({ initialTime }) {
 
   return (
     <div className="count-down-timer">
-      <p className="timer-text">{clueCountDown}</p>
+      <div className="timer-text label">TIMER:</div>
+      <div className="timer-text">{clueCountDown}</div>
     </div>
   );
 }

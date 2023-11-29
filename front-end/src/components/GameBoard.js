@@ -55,7 +55,7 @@ export default function GameBoard({ questions, round, updateScores }) {
             {questions.map((q) => {
               return (
                 <ClueBox
-                  key={q.id}
+                  key={q["id"]}
                   questionData={q}
                   onClick={() => clickClue(q)}
                 />

@@ -1,39 +1,57 @@
+import CountDownTimer from "./CountDownTimer";
 import { useState } from "react";
 
-export default function AnswerModal({ clue, player, handleAnswer, setShowModal }) {
-  const { value, question, answer } = clue;
+export default function Modal({ setShowModal, clue, makeAnswerReport, onCancel }) {
+  const { id, answer, question, value } = clue;
+  const [showAnswer, setShowAnswer] = useState(false);
+
+  function createAnswerReport(correct, incorrect) {
+    const answerReport = {
+      correct: correct,
+      incorrect: incorrect,
+      value: value,
+      id: id,
+    };
+    console.log(`argument correct: ${correct}, answerReport: ${answerReport}`);
+    makeAnswerReport(answerReport);
+    setShowModal(false);
+  }
 
   return (
-    <div className="answer-modal-background" onClick={() => setIsOpen(false)}>
-      <div className="answer-modal">
-        <div className="answer-modal-content">
-          <div className="answer-modal-header">
-            <h4 className="answer-modal-title">This is answer modal title</h4>
-          </div>
-          <div className="answer-modal-body">
-            <p className="modal-clue-text">{question}</p>
-          </div>
-          <div className="modal-footer">
-            <div className="modal-button-wrapper">
-              <button
-                className="modal-button correct-answer"
-                onClick={() => handleAnswer(player, null, value)}
-              >
-                Correct
-              </button>
-              <button
-                className="modal-button incorrect-answer"
-                onClick={() => handleAnswer(null, player, value)}
-              >
-                Wrong
-              </button>
-              <button
-              className="modal-button cancel"
-              onClick={() => setIsOpen(false)}
-              >
-                Cancel
-              </button>
+    <div className="modal-wrapper">
+      <CountDownTimer initialTime={5} />
+      <div className="modal-answer-text">
+        {!showAnswer ? `${question}` : `${answer}`}
+      </div>
+      <div className="modal-button-wrapper">
+        <div className="action-buttons">
+          <button onClick={() => createAnswerReport(-1, [])}>No Answer</button>
+          <button onClick={() => setShowAnswer(true)}>Show Answer</button>
+        </div>
+        <div className="answer-buttons">
+            <div>
+            <button onClick={() => createAnswerReport(0, [])}>
+            Player 1 Correct!
+          </button>
+          <button onClick={() => createAnswerReport(-1, [0])}>
+            Player 1 Wrong!
+          </button>
             </div>
+            <div>
+            <button onClick={() => createAnswerReport(1, [])}>
+            Player 2 Correct!
+          </button>
+          <button onClick={() => createAnswerReport(-1, [1])}>
+            Player 2 Wrong!
+          </button>
+            </div>
+          <div>
+          <button onClick={() => createAnswerReport(2, [])}>
+            Player 3 Correct!
+          </button>
+          <button onClick={() => createAnswerReport(-1, [2])}>
+            Player 3 Wrong!
+          </button>
           </div>
         </div>
       </div>

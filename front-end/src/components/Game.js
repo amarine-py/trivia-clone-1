@@ -1,19 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { fetchRandomQuestionsByNumAndRound } from "../services/gameAPI";
 import GameBoard from "./GameBoard";
 import GameStatusBoard from "./GameStatusBoard";
 import LoadingSpinner from "./LoadingSpinner";
+import PlayerContext from "../context/PlayerContext";
 
 export default function Game() {
   const [questions, setQuestions] = useState([]);
   const [scores, setScores] = useState([0, 0, 0]);
   const [round, setRound] = useState(1);
   const [loaded, setLoaded] = useState(false);
-  const [playerNames, setPlayerNames] = useState([
-    "Player 1",
-    "Player 2",
-    "Player 3",
-  ]);
+  const playerNames = useContext(PlayerContext);
+
+  console.log(playerNames);
 
   useEffect(() => {
     fetchRandomQuestionsByNumAndRound(20, round).then((data) => {
@@ -63,7 +62,6 @@ export default function Game() {
         updateScores={updateScores}
       />
       <GameStatusBoard
-        playerNames={playerNames}
         scores={scores}
         round={round}
       /> 
