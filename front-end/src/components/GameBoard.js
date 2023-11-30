@@ -3,7 +3,7 @@ import ValueBox from "./ValueBox";
 import ClueView from "./ClueView";
 import { useState, useEffect } from "react";
 
-export default function GameBoard({ questions, round, updateScores }) {
+export default function GameBoard({ questions, round, updateScores, scores, turn }) {
   const values = [
     100 * round,
     200 * round,
@@ -43,6 +43,8 @@ export default function GameBoard({ questions, round, updateScores }) {
           clue={displayClueInfo}
           onCancel={onCancel}
           onAnswer={handleClueAnswer}
+          scores={scores}
+          turn={turn}
         />
       ) : (
         <div className="game-board-wrapper">
@@ -52,10 +54,10 @@ export default function GameBoard({ questions, round, updateScores }) {
             })}
           </div>
           <div className="board-layout">
-            {questions.map((q) => {
+            {questions?.map((q) => {
               return (
                 <ClueBox
-                  key={q["id"]}
+                  key={q.id}
                   questionData={q}
                   onClick={() => clickClue(q)}
                 />

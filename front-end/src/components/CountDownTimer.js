@@ -2,9 +2,11 @@ import { useState, useEffect } from "react";
 
 export default function CountDownTimer({ initialTime }) {
     const [clueCountDown, setClueCountDown] = useState(initialTime);
+    const timesUpAudio = new Audio("http://localhost:3000/audio/time-up-sound.mp3");
 
   useEffect(() => {
     if (clueCountDown <= 0) {
+      timesUpAudio.play();
       return;
     }
     const countDown = setInterval(() => {

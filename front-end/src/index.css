@@ -329,6 +329,10 @@ label {
   margin: 10px auto;
 }
 
+.negative {
+  color: red;
+}
+
 .game-status-wrapper {
   flex-direction: column;
   align-items: center;
@@ -478,6 +482,12 @@ label {
   margin: 0;
   margin-bottom: 50px;
   margin-top: -75px;
+}
+
+.daily-double-wrapper {
+  height: 35vh;
+  width: 35vw;
+  border: 3px solid white;
 }
 
 @keyframes spinner {

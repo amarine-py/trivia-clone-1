@@ -1,9 +1,9 @@
 import NavBar from "./components/NavBar";
-import Home from "./components/Home";
-import StartNewGame from "./components/StartNewGame";
-import JoinGame from "./components/JoinGame";
-import Game from "./components/Game";
-import RegisterGame from "./components/RegisterGame";
+import Home from "./pages/Home"
+import StartNewGame from "./pages/StartNewGame";
+import JoinGame from "./pages/JoinGame";
+import Game from "./pages/Game";
+import RegisterGame from "./pages/RegisterGame";
 import PlayerContext from "./context/PlayerContext";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState } from "react";

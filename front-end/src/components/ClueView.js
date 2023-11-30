@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import CountDownTimer from "./CountDownTimer";
-import Modal from "./AnswerModal";
+import AnswerModal from "./AnswerModal";
+import DailyDouble from "./DailyDouble";
 
-export default function ClueView({ clue, onCancel, onAnswer }) {
+export default function ClueView({ clue, onCancel, onAnswer, scores, turn }) {
   const [showModal, setShowModal] = useState(false);
   const category = clue.category.title.toUpperCase();
 
@@ -11,10 +12,18 @@ export default function ClueView({ clue, onCancel, onAnswer }) {
     onCancel();
   }
 
+  if (clue.dailyDouble) {
+    return (
+      <div className="clue-view-wrapper">
+        <DailyDouble clue={clue} onCancel={onCancel} onAnswer={onAnswer} scores={scores} turn={turn} />
+      </div>
+    );
+  }
+
   return (
     <div className="clue-view-wrapper">
       {showModal ? (
-        <Modal setShowModal={setShowModal} clue={clue} makeAnswerReport={reportAnswerResult} onCancel={onCancel}/>
+        <AnswerModal setShowModal={setShowModal} clue={clue} makeAnswerReport={reportAnswerResult} onCancel={onCancel}/>
       ) : (
         <>
           <div className="clue-view-timer">
