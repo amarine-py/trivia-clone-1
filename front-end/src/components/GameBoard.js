@@ -1,9 +1,11 @@
 import ClueBox from "./ClueBox";
 import ValueBox from "./ValueBox";
 import ClueView from "./ClueView";
+import LoadingSpinner from "./LoadingSpinner";
 import { useState, useEffect } from "react";
 
 export default function GameBoard({ questions, round, updateScores, scores, turn }) {
+  const [loaded, setLoaded] = useState(false);
   const values = [
     100 * round,
     200 * round,
@@ -13,6 +15,10 @@ export default function GameBoard({ questions, round, updateScores, scores, turn
   ];
   const [showClue, setShowClue] = useState(false);
   const [displayClueInfo, setDisplayClueInfo] = useState(null);
+
+  useEffect(() => {
+    questions[0]?.id ? setLoaded(true) : setLoaded(false);
+  }, []);
 
   function clickClue(question) {
     setShowClue(true);
@@ -28,11 +34,9 @@ export default function GameBoard({ questions, round, updateScores, scores, turn
     updateScores(scoreReport);
   }
 
-  if (!questions) {
+  if (!loaded) {
     return (
-      <div className="loading-wrapper">
-        <p className="questions-loading">Loading...</p>
-      </div>
+      <LoadingSpinner />
     );
   }
 
@@ -54,7 +58,7 @@ export default function GameBoard({ questions, round, updateScores, scores, turn
             })}
           </div>
           <div className="board-layout">
-            {questions?.map((q) => {
+            {questions.map((q) => {
               return (
                 <ClueBox
                   key={q.id}

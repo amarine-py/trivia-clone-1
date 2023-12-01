@@ -10,6 +10,11 @@ async function fetchRandomQuestionByValue(value) {
 
 }
 
+export async function fetchRandomFinalJeopardyQuestion() {
+    let data = await fetch(`${url}/final`);
+    return await data.json();
+}
+
 export async function fetchRandomQuestionsByNumAndRound(num, round) {
     let results = Array(num).fill(null);
     if (num % 5 !== 0) {

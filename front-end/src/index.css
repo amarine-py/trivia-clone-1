@@ -490,6 +490,152 @@ label {
   border: 3px solid white;
 }
 
+.final-jeopardy-wrapper {
+  background-color: #060ce9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  border: 3px solid white;
+  height: 84%;
+  width: 50%;
+}
+
+.final-jeopardy-text, .final-jeopardy-category-text, .final-jeopardy-name,
+.final-jeopardy-question-text, .final-jeopardy-answer-text,
+.final-jeopardy-question-text2 {
+  font-family: "ITC Korinna";
+  color: white;
+  text-transform: uppercase;
+  font-size: 2rem;
+  text-shadow: 3px 3px black;
+  font-weight: bold;
+}
+
+.final-jeopardy-text {
+  font-size: 1.5rem;
+}
+
+.final-jeopardy-question-text2 {
+  font-size: 1.5rem;
+  margin-bottom: 50px;
+}
+
+.final-jeopardy-answer-text {
+  color: #ffcc00;
+  font-family: "Swiss-911";
+  font-size: 2.5rem;
+  letter-spacing: 0.2rem;
+  margin-bottom: 50px;
+}
+
+.final-jeopardy-span {
+  font-family: "Swiss-911";
+  color: #ffcc00;
+  font-size: 2.5rem;
+  text-shadow: 4px 4px black;
+  letter-spacing: 0.2rem;
+}
+
+.final-jeopardy-wager-wrapper {
+  height: 100%;
+}
+
+.final-jeopardy-wager-body {
+  height:77%;
+}
+
+.final-jeopardy-wager-form {
+  height: 20%;
+}
+
+.player1-wager, .player2-wager, .player3-wager {
+  height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+}
+
+.final-jeopardy-name {
+ margin-right: 20px;
+}
+
+.final-jeopardy-wager-input {
+  width: 25%;
+  height: 40%;
+}
+
+.final-jeopardy-wager-button {
+  height: 25%;
+  margin-top: 190px;
+}
+
+.wager-button {
+  height: 50px;
+  width: 300px;
+  border: 3px solid white;
+  border-radius: 10px;
+  color: white;
+  background-color: black;
+  font-size: 1.2rem;
+}
+
+.final-jeopardy-question-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  border: 3px solid white;
+  height: 100%;
+  width: 100%;
+}
+
+.final-jeopardy-answer-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  padding: 75px;
+  margin: 0;
+  border: 3px solid white;
+  height: 100%;
+  width: 100%;
+}
+
+.final-jeopardy-answer-wrapper button {
+  height: 40px;
+  width: 100px;
+  margin: 0 10px;
+}
+
+.declare-winner-wrapper {
+  background-color:black;
+  height: 75%;
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+}
+
+.winner-text {
+  font-family: "ITC Korinna";
+  color:#ffcc00;
+  text-transform: uppercase;
+  font-size: 2rem;
+  text-shadow: 3px 3px black;
+  font-weight: bold;
+}
+
 @keyframes spinner {
   0% {
     transform: rotate(0deg);
