@@ -55,7 +55,8 @@ export default function RegisterGame({ registerPlayers }) {
           />
         </div>
       </div>
-      <div className="register-button" onClick={register}>Start New Game</div>
+      <div className="register-button" >
+        <button onClick={register}>Start New Game</button></div>
     </div>
   );
 }

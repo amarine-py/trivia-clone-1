@@ -26,12 +26,12 @@ export default function Game() {
 
   useEffect(() => {
     if (round === 3) {
-      setQuestions([]);
       setLoaded(false);
+      setQuestions([]);
       fetchRandomFinalJeopardyQuestion().then((data) => {
         let temp = [...data];
         setQuestions(temp);
-        console.log(`Final Jeopardy question: ${temp}`)
+        console.log(`Final Jeopardy question: ${temp}`);
         return;
       });
     }
@@ -44,7 +44,7 @@ export default function Game() {
         addDailyDoubles(round, temp);
       });
       setUnanswered(numQuestions);
-      // boardFillAudio.play();
+      boardFillAudio.play();
     }
   }, [round]);
 
@@ -80,7 +80,7 @@ export default function Game() {
     setQuestions([...newQuestions]);
     for (let q of newQuestions) {
       if (q?.dailyDouble) {
-        console.log(`Q: ${q.category.title}`);
+        console.log(`Daily Double Q: ${q.category.title}`);
       }
     }
   }
@@ -114,20 +114,18 @@ export default function Game() {
 
   function finishGame() {
     let winner = "";
-    const winnerIdx = scores.indexOf(
-      Math.max(...scores)
-    );
+    const winnerIdx = scores.indexOf(Math.max(...scores));
     if (playerNames.length === 3) {
       winner = playerNames[winnerIdx];
     } else {
-      switch(winnerIdx) {
+      switch (winnerIdx) {
         case 0:
           winner = "Player 1";
           break;
         case 1:
           winner = "Player 2";
           break;
-        case 2: 
+        case 2:
           winner = "Player 3";
           break;
       }
@@ -152,9 +150,15 @@ export default function Game() {
             />
           ) : (
             <>
-              <button onClick={() => setRound(1)}>Go to Round 1</button>
-              <button onClick={() => setUnanswered(0)}>Go to Round 2</button>
-              <button onClick={() => setRound(3)}>Go to Final Jeopardy</button>
+              <div className="debug-tools">
+                <h1>Debug Tools</h1>
+                <button onClick={() => setRound(1)}>Go to Round 1</button>
+                <button onClick={() => setUnanswered(0)}>Go to Round 2</button>
+                <button onClick={() => setRound(3)}>
+                  Go to Final Jeopardy
+                </button>
+              </div>
+
               <GameBoard
                 questions={questions}
                 round={round}

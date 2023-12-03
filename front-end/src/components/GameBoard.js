@@ -4,7 +4,13 @@ import ClueView from "./ClueView";
 import LoadingSpinner from "./LoadingSpinner";
 import { useState, useEffect } from "react";
 
-export default function GameBoard({ questions, round, updateScores, scores, turn }) {
+export default function GameBoard({
+  questions,
+  round,
+  updateScores,
+  scores,
+  turn,
+}) {
   const [loaded, setLoaded] = useState(false);
   const values = [
     100 * round,
@@ -17,12 +23,16 @@ export default function GameBoard({ questions, round, updateScores, scores, turn
   const [displayClueInfo, setDisplayClueInfo] = useState(null);
 
   useEffect(() => {
-    questions[0]?.id ? setLoaded(true) : setLoaded(false);
-  }, []);
+    questions[0]?.id && questions.length === 20
+      ? setLoaded(true)
+      : setLoaded(false);
+  }, [questions]);
 
   function clickClue(question) {
-    setShowClue(true);
-    setDisplayClueInfo(question);
+    if (question.category.title) {
+      setShowClue(true);
+      setDisplayClueInfo(question);
+    }
   }
 
   function onCancel() {
@@ -35,9 +45,7 @@ export default function GameBoard({ questions, round, updateScores, scores, turn
   }
 
   if (!loaded) {
-    return (
-      <LoadingSpinner />
-    );
+    return <LoadingSpinner />;
   }
 
   return (
@@ -51,24 +59,26 @@ export default function GameBoard({ questions, round, updateScores, scores, turn
           turn={turn}
         />
       ) : (
-        <div className="game-board-wrapper">
-          <div className="value-row">
-            {values.map((v) => {
-              return <ValueBox key={v} value={v} />;
-            })}
+        loaded && (
+          <div className="game-board-wrapper">
+            <div className="value-row">
+              {values.map((v) => {
+                return <ValueBox key={v} value={v} />;
+              })}
+            </div>
+            <div className="board-layout">
+              {questions.map((q) => {
+                return (
+                  <ClueBox
+                    key={q.id}
+                    questionData={q}
+                    onClick={() => clickClue(q)}
+                  />
+                );
+              })}
+            </div>
           </div>
-          <div className="board-layout">
-            {questions.map((q) => {
-              return (
-                <ClueBox
-                  key={q.id}
-                  questionData={q}
-                  onClick={() => clickClue(q)}
-                />
-              );
-            })}
-          </div>
-        </div>
+        )
       )}
     </>
   );

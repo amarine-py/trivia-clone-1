@@ -7,12 +7,12 @@ async function fetchRandomQuestionByValue(value) {
     const clues = await data.json();
     const randomClue = Math.floor((Math.random() * clues.count) + 1);
     return clues[randomClue];
-
 }
 
 export async function fetchRandomFinalJeopardyQuestion() {
     let data = await fetch(`${url}/final`);
-    return await data.json();
+    let result = await data.json();
+    return await result;
 }
 
 export async function fetchRandomQuestionsByNumAndRound(num, round) {
@@ -24,7 +24,7 @@ export async function fetchRandomQuestionsByNumAndRound(num, round) {
     let cluesPerValue = (num / 5);
     let data;
     let randomOffset;
-    let nextClue;
+    let randClueNum;
     let value;
     let clues;
     let clue;
@@ -38,16 +38,14 @@ export async function fetchRandomQuestionsByNumAndRound(num, round) {
         for (let j = 0; j < cluesPerValue; j++) {
             let idx = j * 5 + i;
             do {
-                nextClue = Math.floor((Math.random() * 100) + 1);
-            } while (isAlreadyInResults(nextClue, idTracker));
-            idTracker.push(nextClue);
-            clue = clues[nextClue];
+                randClueNum = Math.floor((Math.random() * 100) + 1);
+            } while (isAlreadyInResults(randClueNum, idTracker));
+            idTracker.push(randClueNum);
+            clue = clues[randClueNum];
             results[idx] = clue;
         }
     }
-
     return results;
-    
 }
 
 function isAlreadyInResults(id, idArr) {

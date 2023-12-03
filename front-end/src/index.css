@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 @font-face {
@@ -42,8 +43,7 @@ code {
 .app-start {
   width: 100vw;
   height: 100vh;
-  border: 3px solid white;
-  padding-top: 50px;
+  padding-top: 0px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -60,9 +60,12 @@ header {
   top: 0;
 }
 
-a {
+header a {
   text-decoration: none;
   color:#eee;
+  font-weight: bold;
+  font-size: 22px;
+  text-shadow: 3px 3px black;
 }
 
 h1 {
@@ -76,7 +79,7 @@ h1 {
 
 nav {
   width: 50%;
-  max-width: 300px;
+  max-width: 400px;
   height: 50px;
 }
 
@@ -88,6 +91,8 @@ nav > ul {
   padding-inline-start: 0;
   margin-block: 0;
   height: 100%;
+  margin-right: 25px;
+  width: 400px;
 }
 
 nav > ul > li {
@@ -99,8 +104,7 @@ nav > ul > li {
 }
 
 nav > ul > li > a:hover {
-  background-color: #dfdfe2;
-  color: #1b1b32;
+  color:#ffcc00;
   cursor: pointer;
 }
 
@@ -110,25 +114,25 @@ label {
 
 #home-wrapper {
   background-color: black;
-  height: 100vh;
+  height: 100%;
+  width: 100%;
 }
 
 #home {
   display: flex;
   flex-direction: row;
   margin: auto;
-  margin-top: 50px;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 50vw;
+  margin-top: 10%;
+  align-items: flex-start;
+  justify-content: center;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background-color: black;
 }
 
 #start-new-game, #join-game {
-  width: 500px;
-  height: 500px;
+  width: 20%;
+  height: 30%;
   border: 3px solid white;
   border-radius: 10px;
   justify-content: center;
@@ -142,9 +146,14 @@ label {
   margin: 50px;
 }
 
+.start-value-text {
+  text-decoration: none;
+
+}
+
 .register-wrapper {
-  height: 75%;
-  width: 75%;
+  height: 70%;
+  width: 60%;
   border: 5px solid white;
   border-radius: 10px;
   background-color: #060ce9;
@@ -155,19 +164,21 @@ label {
   color: white;
   font-size: 1.5rem;
   padding: 200px;
+  padding-top: 100px;
 }
 
 .register-title {
   height: 25vh;
   width: 50vw;
+  padding-top: 60px;
   text-align: center;
+  align-items: center;
+  justify-content: center;
   font-family: "Swiss-911";
   text-shadow: 4px 4px black;  
   font-size: 2rem;
   color:#ffcc00;
   text-transform: uppercase;
-  margin-bottom: 50px;
-  margin-top: -70px;
 }
 
 .register-form {
@@ -177,6 +188,7 @@ label {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: -75px;
   padding: 20px;
   font-family: "ITC Korinna";
   text-shadow: 3px 3px black;
@@ -187,20 +199,31 @@ label {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
 }
 
-.register-button {
+.register-input {
+  height: 40px;
+  font-size: 18px;
+  font-weight: bold;
+  border: 4px solid black;
+  border-radius: 10px;
+}
+
+.register-button button {
+  height: 60px;
+  width: 250px;
+  font-size: 1.3rem;
+}
+
+button {
   font-family: "Swiss-911";
   color: black;
   border: 3px solid black;
-  margin: 50px;
-  border-radius: 5px;
+  border-radius: 10px;
   background-color: white;
-  padding: 10px;
 }
 
-.register-button:hover {
+button:hover {
   color: white;
   text-transform: uppercase;
   background-color: black;
@@ -208,11 +231,16 @@ label {
   cursor: pointer;
 }
 
+.register-button {
+  padding: 25px;
+  height: 100px;
+}
+
 .loading-wrapper {
   margin: 100px auto;
 }
 
-.value-text, .clue-box-value {
+.value-text, .clue-box-value, .start-value-text {
   font-family: "Swiss-911";
   color: #ffcc00;
   font-size: 2.5rem;
@@ -236,31 +264,39 @@ label {
   align-items: center;
   justify-content: center;
   text-align: center;
-  margin: 0;
-  padding: 5px;
+  margin: 0 auto;
+  padding: 15px;
 }
 
 .board-layout, .value-row {
   display: grid;
-  grid-template-columns: auto auto auto auto auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  grid-template-columns: 11vw 11vw 11vw 11vw 11vw;
   gap: 0;
 }
 
 .clue-view-wrapper {
   background-color: #060ce9;
   height: 70vh;
-  width: 70vw;
+  width: 55vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  border: 3px solid white;
-  margin: 15px 20px auto 60px;
+  border: 5px solid white;
+  border-radius: 10px;
+  margin: 130px 20px auto 60px;
+  padding: 25px;
 }
 
 .clue-view-title {
   color: white;
+  margin: 25px;
 }
 
 .clue-view-text {
@@ -279,17 +315,34 @@ label {
   align-items: center;
   justify-content: center;
   text-align: center;
+  margin-bottom: 10px;
+  margin-top: -50px;
+}
+
+.clue-view-footer {
+  display: flex;
+  justify-content: space-between;
+  height: 15%;
+  width: 300px;
+  padding: 20px;
+}
+
+.clue-view-footer button {
+  height: 40px;
+  width: 100px;
+  font-size: 1.3rem;
 
 }
 
 .count-down-timer {
   display: flex;
   flex-direction: column;
-  height: 50%;
-  width: 50%;
+  height: 100%;
+  width: 100%;
   text-align: center;
   align-items: center;
   justify-content: center;
+  margin: 25px;
 }
 
 .timer-text {
@@ -306,14 +359,23 @@ label {
   display: flex;
   align-content: center;
   justify-content: center;
-  align-items: space-between;
+  align-items: center;
   height: 100%;
   width: 100%;
-  margin-top: 115px;
+  margin-top: 60px;
 }
 
 .game-board-wrapper {
-  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 95vw;
+  margin: 60px;
+  margin-top: 0px;
+  padding: 0px;
 }
 
 .game-scores {
@@ -338,10 +400,9 @@ label {
   align-items: center;
   justify-content: center;
   text-align: center;
-  border: 3px solid white;
-  width: 25vw;
-  height: 80vh;
-  margin: 0px 100px 0px 45px;
+  width:30vw;
+  height: 100%;
+  margin: 250px 30px 100px 45px;
   padding: 0;
 }
 
@@ -353,6 +414,7 @@ label {
   text-align: center;
   padding: 0;
   margin: auto;
+  max-width: 400px;
 }
 
 .player-name-text {
@@ -375,15 +437,15 @@ label {
 }
 
 .player-score {
-  height: 20vh;
+  height: 40%;
   width: 85%;
   margin: 10px auto;
-
+  margin-bottom: 0px;
 }
 
 .score-outer {
   border: 5px solid silver;
-  height: 21vh;
+  height: 22vh;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -471,7 +533,7 @@ label {
 }
 
 .modal-button-wrapper {
-  height: 30%;
+  height: 40%;
   width: 60%;
   display: flex;
   flex-direction: column;
@@ -484,10 +546,128 @@ label {
   margin-top: -75px;
 }
 
+.modal-button-wrapper button {
+  height: 55px;
+  width: 150px;
+  font-size: 1.3rem;
+}
+
+.action-buttons, .answer-buttons {
+  display: flex;
+  width: 85%;
+  height: 35%;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
+  margin: 10px;
+}
+
+.answer-buttons {
+  height: 55%;
+}
+
+.answer-buttons button {
+  margin: 10px;
+}
+
 .daily-double-wrapper {
-  height: 35vh;
-  width: 35vw;
+  height: 100%;
+  width: 100%;
   border: 3px solid white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+}
+
+.daily-double-header, .daily-double-wager, .daily-double-wager-buttons {
+  height: 25%;
+  width: 75%;
+}
+
+.daily-double-header {
+  height: 10%;
+}
+
+.daily-double-header {
+  font-family: "Swiss-911";
+  color: #ffcc00;
+  font-size: 3.5rem;
+  text-shadow: 5px 5px black;
+  letter-spacing: .15rem;
+}
+
+.daily-double-wager {
+  font-family: "ITC Korinna";
+  color: white;
+  text-transform: uppercase;
+  font-size: 1.7rem;
+  text-shadow: 3px 3px black;
+  font-weight: bold;
+  height: 45%;
+  margin-bottom: 50px;
+}
+
+.daily-double-wager input {
+  width: 25%;
+  height: 10%;
+  border: 3px solid black;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.daily-double-wager-buttons button {
+  height: 50px;
+  width: 100px;
+  font-size: 1.3rem;
+  margin: 10px;
+}
+
+.daily-double-answer-mode {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  font-family: "ITC Korinna";
+  color: white;
+  text-transform: uppercase;
+  font-size: 1.7rem;
+  text-shadow: 3px 3px black;
+  font-weight: bold;
+}
+
+.daily-double-answer-mode p {
+  margin-top: 0px;
+  margin-bottom: 25px;
+}
+
+.daily-double-answer-mode-wager-text {
+  height: 5%;
+}
+
+.daily-double-answer-mode-clue-text {
+  height: 20%;
+}
+
+.daily-double-answer-mode .count-down-timer {
+  height: 20%;
+}
+
+.daily-double-answer-buttons {
+  height: 28%;
+  width: 50%;
+}
+
+.daily-double-answer-buttons button {
+  height: 50px;
+  width: 150px;
+  font-size: 1.3rem;
+  margin: 10px;
 }
 
 .final-jeopardy-wrapper {
@@ -499,8 +679,9 @@ label {
   text-align: center;
   padding: 0;
   margin: 0;
+  margin-bottom: 150px;
   border: 3px solid white;
-  height: 84%;
+  height: 75%;
   width: 50%;
 }
 
@@ -529,7 +710,6 @@ label {
   font-family: "Swiss-911";
   font-size: 2.5rem;
   letter-spacing: 0.2rem;
-  margin-bottom: 50px;
 }
 
 .final-jeopardy-span {
@@ -541,19 +721,22 @@ label {
 }
 
 .final-jeopardy-wager-wrapper {
-  height: 100%;
+  height: 75vh;
+  width: 90%;
 }
 
 .final-jeopardy-wager-body {
-  height:77%;
+  height:90%;
 }
 
 .final-jeopardy-wager-form {
-  height: 20%;
+  display: flex;
+  flex-direction: column;
+  height: 40%;
 }
 
 .player1-wager, .player2-wager, .player3-wager {
-  height: 80%;
+  height: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -567,21 +750,21 @@ label {
 .final-jeopardy-wager-input {
   width: 25%;
   height: 40%;
+  border: 3px solid black;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 1.2rem;
 }
 
 .final-jeopardy-wager-button {
   height: 25%;
-  margin-top: 190px;
+  margin-top: 10px;
 }
 
 .wager-button {
   height: 50px;
   width: 300px;
-  border: 3px solid white;
-  border-radius: 10px;
-  color: white;
-  background-color: black;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
 }
 
 .final-jeopardy-question-wrapper {
@@ -611,9 +794,19 @@ label {
 }
 
 .final-jeopardy-answer-wrapper button {
-  height: 40px;
-  width: 100px;
+  height: 50px;
+  width: 125px;
   margin: 0 10px;
+  font-size: 1.3rem;
+}
+
+.final-submit-button {
+  height: 25%;
+  margin-top: 50px;
+}
+
+.final-submit-button button {
+  width: 175px;
 }
 
 .declare-winner-wrapper {
@@ -652,5 +845,26 @@ label {
   border-top: 10px solid #383636; /* Black */
   border-radius: 50%;
   animation: spinner 1.5s linear infinite;
+}
+
+.debug-tools {
+  border: 3px solid white;
+  border-radius: 10px;
+  height: 90%;
+  margin-bottom: 120px;
+  margin-top: 65px;
+  margin-left: 20px;
+  width: 20vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+}
+
+.debug-tools button {
+  width: 100px;
+  height: 50px;
+  margin: 15px auto;
 }
 

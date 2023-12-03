@@ -24,8 +24,6 @@ export default function FinalJeopardy({
     "http://localhost:3000/audio/final-jeopardy-theme.mp3"
   );
 
-  console.log(`Final Jeopardy clue: ${Object.values(clue)}`);
-
   const handleChange = (evt) => {
     const nextWagers = { ...wagers };
     nextWagers[evt.target.name] = parseInt(evt.target.value);
