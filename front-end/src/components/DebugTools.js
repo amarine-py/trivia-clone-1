@@ -7,7 +7,7 @@ export default function DebugTools({ setRound, playerNames, setPlayerNames }) {
   let player3 = playerNames[2];
   const inputStyle = {
     color: "white",
-    "font-size": "20px",
+    fontSize: "20px",
     marginTop: "20px",
   };
 
