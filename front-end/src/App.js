@@ -1,7 +1,5 @@
 import NavBar from "./components/NavBar";
-import Home from "./pages/Home"
-import StartNewGame from "./pages/StartNewGame";
-import JoinGame from "./pages/JoinGame";
+import Home from "./pages/Home";
 import Game from "./pages/Game";
 import RegisterGame from "./pages/RegisterGame";
 import PlayerContext from "./context/PlayerContext";
@@ -25,7 +23,10 @@ function App() {
             path="/register-game"
             element={<RegisterGame registerPlayers={registerPlayers} />}
           />
-          <Route path="/new-game" element={<Game setPlayerNames={setPlayerNames}/>} />
+          <Route
+            path="/new-game"
+            element={<Game setPlayerNames={setPlayerNames} />}
+          />
         </Routes>
       </div>
     </PlayerContext.Provider>

@@ -11,7 +11,7 @@ import FinalJeopardy from "../components/FinalJeopardy";
 import DeclareWinner from "../components/DeclareWinner";
 import DebugTools from "../components/DebugTools";
 
-export default function Game({setPlayerNames}) {
+export default function Game({ setPlayerNames }) {
   const numQuestions = 20;
   const [unanswered, setUnanswered] = useState(numQuestions);
   const [turn, setTurn] = useState(0);
@@ -25,8 +25,8 @@ export default function Game({setPlayerNames}) {
     "http://localhost:3000/audio/board-fill-sound.mp3"
   );
 
-
   useEffect(() => {
+    // if it's round 3, we go to Final Jeopardy
     if (round === 3) {
       setLoaded(false);
       setQuestions([]);
@@ -36,6 +36,7 @@ export default function Game({setPlayerNames}) {
         return;
       });
     }
+    // if it's not round 3, we fetch questions, set daily doubles, and load the board
     if (round < 3) {
       setQuestions([]);
       if (setLoaded) setLoaded(false);
@@ -50,6 +51,8 @@ export default function Game({setPlayerNames}) {
   }, [setRound]);
 
   useEffect(() => {
+    // we don't want to try to load the board until the questions have been fetched
+    // this means it will take around 10sec to load before each round
     setTimeout(() => {
       if (clueDataLoaded()) {
         setLoaded(true);
@@ -57,11 +60,11 @@ export default function Game({setPlayerNames}) {
         setRound(2);
         setRound(1);
       }
-    }, 4000)
-    
+    }, 4000);
   }, [questions]);
 
   useEffect(() => {
+    // if there are no more unanswered questions, we increment the round
     if (unanswered === 0) {
       setQuestions([]);
       setRound(round + 1);
@@ -69,6 +72,7 @@ export default function Game({setPlayerNames}) {
   }, [unanswered]);
 
   function clueDataLoaded() {
+    // this function checks to make sure the questions have been fetched
     let count = 0;
     for (let i = 0; i < numQuestions; i++) {
       if (questions[i]?.id) {
@@ -82,6 +86,7 @@ export default function Game({setPlayerNames}) {
   }
 
   function addDailyDoubles(num, data) {
+    // this function loads the daily doubles randomly into the board
     let numTracker = [];
     let newQuestions = data.slice();
     let randomClue;
@@ -104,6 +109,7 @@ export default function Game({setPlayerNames}) {
   }
 
   function updateScores(scoreReport) {
+    // this function updates scores after a question
     if (scoreReport.id !== null) {
       let tempUnanswered = unanswered;
       tempUnanswered--;
@@ -131,6 +137,7 @@ export default function Game({setPlayerNames}) {
   }
 
   function finishGame() {
+    // this function decides the winner after final jeopardy
     let winner = "";
     const winnerIdx = scores.indexOf(Math.max(...scores));
     if (playerNames.length === 3) {
@@ -169,7 +176,11 @@ export default function Game({setPlayerNames}) {
             />
           ) : (
             <>
-              <DebugTools setRound={setRound} playerNames={playerNames} setPlayerNames={setPlayerNames}/>
+              <DebugTools
+                setRound={setRound}
+                playerNames={playerNames}
+                setPlayerNames={setPlayerNames}
+              />
               <GameBoard
                 questions={questions}
                 round={round}

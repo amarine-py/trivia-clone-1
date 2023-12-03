@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import CountDownTimer from "./CountDownTimer";
 import AnswerModal from "./AnswerModal";
 import DailyDouble from "./DailyDouble";
@@ -15,7 +15,13 @@ export default function ClueView({ clue, onCancel, onAnswer, scores, turn }) {
   if (clue.dailyDouble) {
     return (
       <div className="clue-view-wrapper">
-        <DailyDouble clue={clue} onCancel={onCancel} onAnswer={onAnswer} scores={scores} turn={turn} />
+        <DailyDouble
+          clue={clue}
+          onCancel={onCancel}
+          onAnswer={onAnswer}
+          scores={scores}
+          turn={turn}
+        />
       </div>
     );
   }
@@ -23,7 +29,11 @@ export default function ClueView({ clue, onCancel, onAnswer, scores, turn }) {
   return (
     <div className="clue-view-wrapper">
       {showModal ? (
-        <AnswerModal setShowModal={setShowModal} clue={clue} makeAnswerReport={reportAnswerResult} onCancel={onCancel}/>
+        <AnswerModal
+          setShowModal={setShowModal}
+          clue={clue}
+          makeAnswerReport={reportAnswerResult}
+        />
       ) : (
         <>
           <div className="clue-view-timer">

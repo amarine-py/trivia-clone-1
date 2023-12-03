@@ -8,7 +8,9 @@ export default function PlayerScoreBoard({ playerName, score }) {
         </div>
         <div className="score-inner">
           <div className="score-display">
-            <p className={(score >= 0) ? "score-text" : "score-text negative"}>{`$${score}`}</p>
+            <p
+              className={score >= 0 ? "score-text" : "score-text negative"}
+            >{`$${score}`}</p>
           </div>
           <div className="name-display">
             <p className="player-name-text">{playerName}</p>

@@ -1,6 +1,3 @@
-import { useContext } from "react";
-import PlayerContext from "../context/PlayerContext";
-
 export default function DebugTools({ setRound, playerNames, setPlayerNames }) {
   let player1 = playerNames[0];
   let player2 = playerNames[1];

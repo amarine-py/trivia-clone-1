@@ -1,15 +1,14 @@
 import ClueBox from "./ClueBox";
 import ValueBox from "./ValueBox";
 import ClueView from "./ClueView";
-import LoadingSpinner from "./LoadingSpinner";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function GameBoard({
   questions,
   round,
   updateScores,
   scores,
-  turn
+  turn,
 }) {
   const values = [
     100 * round,
@@ -36,7 +35,7 @@ export default function GameBoard({
   function handleClueAnswer(scoreReport) {
     updateScores(scoreReport);
   }
-  
+
   return (
     <>
       {showClue ? (
@@ -48,24 +47,24 @@ export default function GameBoard({
           turn={turn}
         />
       ) : (
-          <div className="game-board-wrapper">
-            <div className="value-row">
-              {values.map((v) => {
-                return <ValueBox key={v} value={v} />;
-              })}
-            </div>
-            <div className="board-layout">
-              {questions.map((q) => {
-                return (
-                  <ClueBox
-                    key={q.id}
-                    questionData={q}
-                    onClick={() => clickClue(q)}
-                  />
-                );
-              })}
-            </div>
+        <div className="game-board-wrapper">
+          <div className="value-row">
+            {values.map((v) => {
+              return <ValueBox key={v} value={v} />;
+            })}
           </div>
+          <div className="board-layout">
+            {questions.map((q) => {
+              return (
+                <ClueBox
+                  key={q.id}
+                  questionData={q}
+                  onClick={() => clickClue(q)}
+                />
+              );
+            })}
+          </div>
+        </div>
       )}
     </>
   );

@@ -1,7 +1,4 @@
-import { useState } from "react";
-
-export default function ClueBox({questionData, onClick}) {
-  const [clicked, setClicked] = useState(false);
+export default function ClueBox({ questionData, onClick }) {
   const { category } = questionData;
 
   function doClick() {
@@ -10,11 +7,7 @@ export default function ClueBox({questionData, onClick}) {
 
   return (
     <div id="clue-box-container" className="clue-box" onClick={doClick}>
-      {!clicked ? (
-        <p className="clue-box-category">{category.title}</p>
-      ) : (
-        <p className="clue-box-clicked">Nothing</p>
-      )}
+      <p className="clue-box-category">{category.title}</p>
     </div>
   );
 }

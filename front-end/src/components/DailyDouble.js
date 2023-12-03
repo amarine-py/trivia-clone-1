@@ -77,8 +77,12 @@ export default function DailyDouble({
           <div className="daily-double-answer-mode">
             <CountDownTimer initialTime={10} />
             <p className="daily-double-answer-mode-wager-text">{`Your wager: $${value}`}</p>
-            <p className="daily-double-answer-mode-clue-text">{clue.question}</p>
-            {showAnswer && <p className="daily-double-answer-mode-answer-text">{`Correct Answer: ${clue.answer}`}</p>}
+            <p className="daily-double-answer-mode-clue-text">
+              {clue.question}
+            </p>
+            {showAnswer && (
+              <p className="daily-double-answer-mode-answer-text">{`Correct Answer: ${clue.answer}`}</p>
+            )}
             <div className="daily-double-answer-buttons">
               <button onClick={() => setShowAnswer(true)}>Show Answer</button>
               <button onClick={() => createAnswerReport(turn, [])}>
@@ -96,7 +100,7 @@ export default function DailyDouble({
               <p>{`Category: ${clue.category.title}`}</p>
               <p>{`You can wager anything up to: $${scores[turn]}.`}</p>
               <p>How much would you like to wager?</p>
-              {`$ `} 
+              {`$ `}
               <input
                 type="number"
                 placeholder="Enter your wager"

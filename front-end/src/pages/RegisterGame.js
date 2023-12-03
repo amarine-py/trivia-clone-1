@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function RegisterGame({ registerPlayers }) {
@@ -15,7 +15,7 @@ export default function RegisterGame({ registerPlayers }) {
     registerPlayers(playerNames);
     console.log(playerNames);
     navigate("/new-game");
-  }
+  };
 
   return (
     <div className="register-wrapper">
@@ -55,8 +55,9 @@ export default function RegisterGame({ registerPlayers }) {
           />
         </div>
       </div>
-      <div className="register-button" >
-        <button onClick={register}>Start New Game</button></div>
+      <div className="register-button">
+        <button onClick={register}>Start New Game</button>
+      </div>
     </div>
   );
 }
