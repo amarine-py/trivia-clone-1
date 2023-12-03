@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/trivia-clone/static/css/main.1726d31e.css",
+    "main.js": "/trivia-clone/static/js/main.4e798d00.js",
+    "index.html": "/trivia-clone/index.html",
+    "main.1726d31e.css.map": "/trivia-clone/static/css/main.1726d31e.css.map",
+    "main.4e798d00.js.map": "/trivia-clone/static/js/main.4e798d00.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1726d31e.css",
+    "static/js/main.4e798d00.js"
+  ]
+}
