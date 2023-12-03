@@ -9,9 +9,8 @@ export default function GameBoard({
   round,
   updateScores,
   scores,
-  turn,
+  turn
 }) {
-  const [loaded, setLoaded] = useState(false);
   const values = [
     100 * round,
     200 * round,
@@ -21,12 +20,6 @@ export default function GameBoard({
   ];
   const [showClue, setShowClue] = useState(false);
   const [displayClueInfo, setDisplayClueInfo] = useState(null);
-
-  useEffect(() => {
-    questions[0]?.id && questions.length === 20
-      ? setLoaded(true)
-      : setLoaded(false);
-  }, [questions]);
 
   function clickClue(question) {
     if (question.category.title) {
@@ -43,11 +36,7 @@ export default function GameBoard({
   function handleClueAnswer(scoreReport) {
     updateScores(scoreReport);
   }
-
-  if (!loaded) {
-    return <LoadingSpinner />;
-  }
-
+  
   return (
     <>
       {showClue ? (
@@ -59,7 +48,6 @@ export default function GameBoard({
           turn={turn}
         />
       ) : (
-        loaded && (
           <div className="game-board-wrapper">
             <div className="value-row">
               {values.map((v) => {
@@ -78,7 +66,6 @@ export default function GameBoard({
               })}
             </div>
           </div>
-        )
       )}
     </>
   );

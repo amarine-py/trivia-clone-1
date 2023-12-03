@@ -9,8 +9,9 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import PlayerContext from "../context/PlayerContext";
 import FinalJeopardy from "../components/FinalJeopardy";
 import DeclareWinner from "../components/DeclareWinner";
+import DebugTools from "../components/DebugTools";
 
-export default function Game() {
+export default function Game({setPlayerNames}) {
   const numQuestions = 20;
   const [unanswered, setUnanswered] = useState(numQuestions);
   const [turn, setTurn] = useState(0);
@@ -19,10 +20,11 @@ export default function Game() {
   const [round, setRound] = useState(1);
   const [loaded, setLoaded] = useState(false);
   const [winner, setWinner] = useState("");
-  const playerNames = useContext(PlayerContext);
+  let playerNames = useContext(PlayerContext);
   const boardFillAudio = new Audio(
     "http://localhost:3000/audio/board-fill-sound.mp3"
   );
+
 
   useEffect(() => {
     if (round === 3) {
@@ -31,7 +33,6 @@ export default function Game() {
       fetchRandomFinalJeopardyQuestion().then((data) => {
         let temp = [...data];
         setQuestions(temp);
-        console.log(`Final Jeopardy question: ${temp}`);
         return;
       });
     }
@@ -44,17 +45,21 @@ export default function Game() {
         addDailyDoubles(round, temp);
       });
       setUnanswered(numQuestions);
-      boardFillAudio.play();
+      // boardFillAudio.play();
     }
-  }, [round]);
+  }, [setRound]);
 
   useEffect(() => {
-    if (questions[0]?.id) {
-      setLoaded(true);
-    } else {
-      setLoaded(false);
-    }
-  }, [questions.length]);
+    setTimeout(() => {
+      if (clueDataLoaded()) {
+        setLoaded(true);
+      } else {
+        setRound(2);
+        setRound(1);
+      }
+    }, 4000)
+    
+  }, [questions]);
 
   useEffect(() => {
     if (unanswered === 0) {
@@ -63,13 +68,26 @@ export default function Game() {
     }
   }, [unanswered]);
 
+  function clueDataLoaded() {
+    let count = 0;
+    for (let i = 0; i < numQuestions; i++) {
+      if (questions[i]?.id) {
+        count++;
+      }
+    }
+    if (count === numQuestions) {
+      return true;
+    }
+    return false;
+  }
+
   function addDailyDoubles(num, data) {
     let numTracker = [];
     let newQuestions = data.slice();
     let randomClue;
     for (let i = 0; i < num; i++) {
       do {
-        randomClue = Math.floor(Math.random() * numQuestions - 1);
+        randomClue = Math.floor(Math.random() * numQuestions);
       } while (numTracker.includes(randomClue));
       console.log(`Random number: ${randomClue}`);
       numTracker.push(randomClue);
@@ -139,6 +157,7 @@ export default function Game() {
 
   return (
     <div className="game-wrapper">
+      {console.log(`Loaded in Game.js: ${loaded}`)}
       {loaded && (
         <>
           {round === 3 ? (
@@ -150,15 +169,7 @@ export default function Game() {
             />
           ) : (
             <>
-              <div className="debug-tools">
-                <h1>Debug Tools</h1>
-                <button onClick={() => setRound(1)}>Go to Round 1</button>
-                <button onClick={() => setUnanswered(0)}>Go to Round 2</button>
-                <button onClick={() => setRound(3)}>
-                  Go to Final Jeopardy
-                </button>
-              </div>
-
+              <DebugTools setRound={setRound} playerNames={playerNames} setPlayerNames={setPlayerNames}/>
               <GameBoard
                 questions={questions}
                 round={round}

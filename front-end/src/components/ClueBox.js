@@ -2,7 +2,7 @@ import { useState } from "react";
 
 export default function ClueBox({questionData, onClick}) {
   const [clicked, setClicked] = useState(false);
-  const { question, answer, category, value } = questionData;
+  const { category } = questionData;
 
   function doClick() {
     onClick(questionData);

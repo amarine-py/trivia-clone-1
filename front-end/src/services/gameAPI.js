@@ -16,7 +16,7 @@ export async function fetchRandomFinalJeopardyQuestion() {
 }
 
 export async function fetchRandomQuestionsByNumAndRound(num, round) {
-    let results = Array(num).fill(null);
+    let results = Array(num).fill({});
     if (num % 5 !== 0) {
         console.log("Number of questions not divisible by number of value categories.");
         return null;
@@ -41,10 +41,13 @@ export async function fetchRandomQuestionsByNumAndRound(num, round) {
                 randClueNum = Math.floor((Math.random() * 100) + 1);
             } while (isAlreadyInResults(randClueNum, idTracker));
             idTracker.push(randClueNum);
-            clue = clues[randClueNum];
+            clue = await clues[randClueNum];
             results[idx] = clue;
         }
     }
+    console.log(`API request: ${url}/clues?value=${value}&offset=${randomOffset}`)
+    console.log(`questions.length from the API: ${results.length}`);
+    
     return results;
 }
 

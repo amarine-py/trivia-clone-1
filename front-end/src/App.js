@@ -25,7 +25,7 @@ function App() {
             path="/register-game"
             element={<RegisterGame registerPlayers={registerPlayers} />}
           />
-          <Route path="/new-game" element={<Game />} />
+          <Route path="/new-game" element={<Game setPlayerNames={setPlayerNames}/>} />
         </Routes>
       </div>
     </PlayerContext.Provider>
