@@ -13,7 +13,6 @@ export default function RegisterGame({ registerPlayers }) {
     playerNames.push(player2);
     playerNames.push(player3);
     registerPlayers(playerNames);
-    console.log(playerNames);
     navigate("/new-game");
   };
 

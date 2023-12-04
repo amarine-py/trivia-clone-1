@@ -57,6 +57,7 @@ export default function Game({ setPlayerNames }) {
       if (clueDataLoaded()) {
         setLoaded(true);
       } else {
+        setRound(3);
         setRound(round);
       }
     }, 4000);
@@ -96,7 +97,6 @@ export default function Game({ setPlayerNames }) {
       do {
         randomClue = Math.floor(Math.random() * numQuestions);
       } while (numTracker.includes(randomClue));
-      console.log(`Random number: ${randomClue}`);
       numTracker.push(randomClue);
       newQuestions
         ? (newQuestions[randomClue].dailyDouble = true)
@@ -105,7 +105,6 @@ export default function Game({ setPlayerNames }) {
     setQuestions([...newQuestions]);
     for (let q of newQuestions) {
       if (q?.dailyDouble) {
-        console.log(`Daily Double Q: ${q.category.title}`);
       }
     }
   }
@@ -166,7 +165,6 @@ export default function Game({ setPlayerNames }) {
 
   return (
     <div className="game-wrapper">
-      {console.log(`Loaded in Game.js: ${loaded}`)}
       {loaded && (
         <>
           {round === 3 ? (

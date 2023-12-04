@@ -48,11 +48,6 @@ export async function fetchRandomQuestionsByNumAndRound(num, round) {
       results[idx] = clue;
     }
   }
-  console.log(
-    `API request: ${url}/clues?value=${value}&offset=${randomOffset}`
-  );
-  console.log(`questions.length from the API: ${results.length}`);
-
   return results;
 }
 

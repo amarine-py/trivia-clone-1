@@ -246,7 +246,11 @@ button:hover {
   justify-content: center;
   text-align: center;
   padding: 5px auto;
+}
 
+.board-layout div:hover {
+  cursor: pointer;
+  background-color: #0d13af;
 }
 
 .value-text, .clue-box-value, .start-value-text {
@@ -432,6 +436,7 @@ button:hover {
   font-size: 2.5rem;
   color: white;
   font-family: "Autography";
+  width: 100%;
 }
 
 .round-status {
@@ -509,6 +514,7 @@ button:hover {
 .name-display {
   border: 3px solid black;
   height: 70%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -661,7 +667,8 @@ button:hover {
 }
 
 .daily-double-answer-mode-clue-text {
-  height: 20%;
+  height: 30%;
+  width: 100%;
 }
 
 .daily-double-answer-mode .count-down-timer {
@@ -669,7 +676,7 @@ button:hover {
 }
 
 .daily-double-answer-buttons {
-  height: 28%;
+  height: 40%;
   width: 50%;
 }
 
