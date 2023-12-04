@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/trivia-clone-1/static/css/main.eaf528df.css",
-    "main.js": "/trivia-clone-1/static/js/main.c79c2d75.js",
+    "main.js": "/trivia-clone-1/static/js/main.3f48f056.js",
     "index.html": "/trivia-clone-1/index.html",
     "main.eaf528df.css.map": "/trivia-clone-1/static/css/main.eaf528df.css.map",
-    "main.c79c2d75.js.map": "/trivia-clone-1/static/js/main.c79c2d75.js.map"
+    "main.3f48f056.js.map": "/trivia-clone-1/static/js/main.3f48f056.js.map"
   },
   "entrypoints": [
     "static/css/main.eaf528df.css",
-    "static/js/main.c79c2d75.js"
+    "static/js/main.3f48f056.js"
   ]
 }
