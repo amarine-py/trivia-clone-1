@@ -296,7 +296,7 @@ button:hover {
 
 .clue-view-wrapper {
   background-color: #060ce9;
-  height: 70vh;
+  height: 80%;
   width: 55vw;
   display: flex;
   flex-direction: column;
@@ -305,7 +305,7 @@ button:hover {
   text-align: center;
   border: 5px solid white;
   border-radius: 10px;
-  margin: 130px 20px auto 60px;
+  margin: 75px 20px auto 60px;
   padding: 25px;
 }
 
@@ -593,14 +593,19 @@ button:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   text-align: center;
 }
 
-.daily-double-header, .daily-double-wager, .daily-double-wager-buttons {
+.daily-double-header {
   height: 25%;
   width: 75%;
 }
+
+.daily-double-wager-buttons {
+  height: 15%;
+}
+
 
 .daily-double-header {
   height: 10%;
@@ -621,8 +626,8 @@ button:hover {
   font-size: 1.7rem;
   text-shadow: 3px 3px black;
   font-weight: bold;
-  height: 45%;
-  margin-bottom: 50px;
+  width: 100%;
+  height: 55%;
 }
 
 .daily-double-wager input {

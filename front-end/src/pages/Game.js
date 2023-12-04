@@ -105,6 +105,7 @@ export default function Game({ setPlayerNames }) {
     setQuestions([...newQuestions]);
     for (let q of newQuestions) {
       if (q?.dailyDouble) {
+        console.log(`Daily Double: ${q.category.title}`)
       }
     }
   }
