@@ -21,7 +21,7 @@ export default function FinalJeopardy({
   let player2Score = scores[1];
   let player3Score = scores[2];
   const finalJeopardyTheme = new Audio(
-    "http://localhost:3000/audio/final-jeopardy-theme.mp3"
+    "./audio/final-jeopardy-theme.mp3"
   );
 
   const handleChange = (evt) => {

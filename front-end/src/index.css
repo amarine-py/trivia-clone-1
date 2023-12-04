@@ -5,22 +5,22 @@
 
 @font-face {
   font-family: "Swiss-911";
-  src: url("http://localhost:3000/fonts/swiss-911.otf");
+  src: url("https://amarine-py.github.io/trivia-clone-1/fonts/swiss-911.otf");
 }
 
 @font-face {
   font-family: "ITC Korinna";
-  src: url("http://localhost:3000/fonts/Korinna-Regular.otf");
+  src: url("https://amarine-py.github.io/trivia-clone-1/fonts/Korinna-Regular.otf");
 }
 
 @font-face {
   font-family: "American Signature";
-  src: url("http://localhost:3000/fonts/AmericanSignature.ttf");
+  src: url("https://amarine-py.github.io/trivia-clone-1/fonts/AmericanSignature.ttf");
 }
 
 @font-face {
   font-family: "Autography";
-  src: url("http://localhost:3000/fonts/Autography.otf");
+  src: url("https://amarine-py.github.io/trivia-clone-1/fonts/Autography.otf");
 }
 
 body {

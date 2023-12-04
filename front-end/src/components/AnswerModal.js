@@ -5,10 +5,10 @@ export default function AnswerModal({ setShowModal, clue, makeAnswerReport }) {
   const { id, answer, question, value } = clue;
   const [showAnswer, setShowAnswer] = useState(false);
   const correctAnswerAudio = new Audio(
-    "http://localhost:3000/audio/right-answer-sound.mp3"
+    "./audio/right-answer-sound.mp3"
   );
   const wrongAnswerAudio = new Audio(
-    "http://localhost:3000/audio/wrong-answer-sound.mp3"
+    "./audio/wrong-answer-sound.mp3"
   );
 
   function createAnswerReport(correct, incorrect) {

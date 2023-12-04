@@ -16,10 +16,10 @@ export default function DailyDouble({
   const player = getPlayerName();
   const maxWager = Math.max(1000, scores[turn]);
   const correctAnswerAudio = new Audio(
-    "http://localhost:3000/audio/right-answer-sound.mp3"
+    "./audio/right-answer-sound.mp3"
   );
   const wrongAnswerAudio = new Audio(
-    "http://localhost:3000/audio/wrong-answer-sound.mp3"
+    "./audio/wrong-answer-sound.mp3"
   );
   let newValue;
 

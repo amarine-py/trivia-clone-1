@@ -22,7 +22,7 @@ export default function Game({ setPlayerNames }) {
   const [winner, setWinner] = useState("");
   let playerNames = useContext(PlayerContext);
   const boardFillAudio = new Audio(
-    "http://localhost:3000/audio/board-fill-sound.mp3"
+    "./audio/board-fill-sound.mp3"
   );
 
   useEffect(() => {
