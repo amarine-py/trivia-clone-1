@@ -534,12 +534,12 @@ button:hover {
 }
 
 .modal-wrapper > .count-down-timer {
-  height: 25%;
+  height: 15%;
   width: 20%;
 }
 
 .modal-answer-text {
-  height: 35%;
+  height: 30%;
   width: 60%;
   font-family: "ITC Korinna";
   color: white;
@@ -550,8 +550,8 @@ button:hover {
 }
 
 .modal-button-wrapper {
-  height: 40%;
-  width: 60%;
+  height: 50%;
+  width: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -668,7 +668,12 @@ button:hover {
 }
 
 .daily-double-answer-mode-wager-text {
-  height: 5%;
+  height: 10%;
+}
+
+.daily-double-answer-mode-answer-text {
+  height: 10%;
+  margin-bottom: 15px;
 }
 
 .daily-double-answer-mode-clue-text {
@@ -681,7 +686,7 @@ button:hover {
 }
 
 .daily-double-answer-buttons {
-  height: 40%;
+  height: 35%;
   width: 50%;
 }
 
