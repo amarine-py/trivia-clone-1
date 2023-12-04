@@ -584,7 +584,6 @@ button:hover {
 .daily-double-wrapper {
   height: 100%;
   width: 100%;
-  border: 3px solid white;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -697,7 +696,7 @@ button:hover {
 }
 
 .final-jeopardy-text, .final-jeopardy-category-text, .final-jeopardy-name,
-.final-jeopardy-question-text, .final-jeopardy-answer-text,
+.final-jeopardy-question-text, .final-jeopardy-question-category-text, .final-jeopardy-answer-text,
 .final-jeopardy-question-text2 {
   font-family: "ITC Korinna";
   color: white;
@@ -797,6 +796,10 @@ button:hover {
 
 .final-jeopardy-question-text {
   height: 35%;
+}
+
+.final-jeopardy-question-category-text {
+  margin-bottom: 50px;
 }
 
 .final-jeopardy-answer-wrapper {

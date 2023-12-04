@@ -151,6 +151,7 @@ export default function FinalJeopardy({
       {questionMode && (
         <div className="final-jeopardy-question-wrapper">
           <CountDownTimer initialTime={30} action={handleModeChange} />
+          <div className="final-jeopardy-question-category-text">Category: {clue.category.title}</div>
           <div className="final-jeopardy-question-text">{clue.question}</div>
         </div>
       )}

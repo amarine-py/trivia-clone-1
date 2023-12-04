@@ -48,7 +48,7 @@ export default function Game({ setPlayerNames }) {
       setUnanswered(numQuestions);
       // boardFillAudio.play();
     }
-  }, [setRound]);
+  }, [round]);
 
   useEffect(() => {
     // we don't want to try to load the board until the questions have been fetched
@@ -57,8 +57,7 @@ export default function Game({ setPlayerNames }) {
       if (clueDataLoaded()) {
         setLoaded(true);
       } else {
-        setRound(2);
-        setRound(1);
+        setRound(round);
       }
     }, 4000);
   }, [questions]);
@@ -74,6 +73,9 @@ export default function Game({ setPlayerNames }) {
   function clueDataLoaded() {
     // this function checks to make sure the questions have been fetched
     let count = 0;
+    if (round === 3 && questions.length === 1) {
+      return true;
+    }
     for (let i = 0; i < numQuestions; i++) {
       if (questions[i]?.id) {
         count++;
