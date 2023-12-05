@@ -84,8 +84,6 @@ export default function Game({ setPlayerNames }) {
 
   function clueDataLoaded(data) {
     // this function checks to make sure the questions have been fetched
-    console.log(data);
-    let count = 0;
     if (round === 3 && data.length === 1) {
       return true;
     }

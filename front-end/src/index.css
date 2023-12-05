@@ -712,7 +712,7 @@ button:hover {
   margin: 0;
   margin-bottom: 50px;
   border: 3px solid white;
-  height: 85%;
+  height: 87%;
   width: 50%;
 }
 
@@ -746,13 +746,13 @@ button:hover {
 .final-jeopardy-span {
   font-family: "Swiss-911";
   color: #ffcc00;
-  font-size: 2.5rem;
+  font-size: 2rem;
   text-shadow: 4px 4px black;
   letter-spacing: 0.2rem;
 }
 
 .final-jeopardy-wager-wrapper {
-  height: 75vh;
+  height: 100%;
   width: 90%;
 }
 
@@ -764,11 +764,12 @@ button:hover {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 60%;
+  height: 50%;
 }
 
 .player1-wager, .player2-wager, .player3-wager {
-  height: 50%;
+  height: 45%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -776,21 +777,31 @@ button:hover {
   align-content: center;
 }
 
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  width: 100%;
+  height: 50%;
+}
 .final-jeopardy-name {
  margin-right: 20px;
 }
 
 .final-jeopardy-wager-input {
   width: 25%;
-  height: 30%;
+  height: 75%;
   border: 3px solid black;
   border-radius: 10px;
   font-weight: bold;
   font-size: 1.2rem;
+  align-items: start;
+  margin-bottom: 8px;
 }
 
 .final-jeopardy-wager-button {
-  height: 25%;
+  height: 15%;
   margin-top: 10px;
 }
 
