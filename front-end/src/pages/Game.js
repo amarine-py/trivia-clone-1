@@ -197,15 +197,6 @@ export default function Game({ setPlayerNames }) {
 
   return (
     <div className="game-wrapper">
-      {error ? (
-        <ErrorMessage
-          errorStatus={errorStatus}
-          setRound={setRound}
-          round={round}
-          setError={setError}
-          reload={reload}
-        />
-      ) : null}
       {loaded && (
         <>
           {round === 3 ? (

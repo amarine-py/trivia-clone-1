@@ -16,29 +16,61 @@ export default function FinalJeopardy({
     player2Wager: 0,
     player3Wager: 0,
   });
+  const [badWagers, setBadWagers] = useState([false, false, false]);
   const playerNames = useContext(PlayerContext);
   let player1Score = scores[0];
   let player2Score = scores[1];
   let player3Score = scores[2];
-  const finalJeopardyTheme = new Audio(
-    "./audio/final-jeopardy-theme.mp3"
-  );
+  const maxWager1 = Math.max(player1Score, 0);
+  const maxWager2 = Math.max(player2Score, 0);
+  const maxWager3 = Math.max(player3Score, 0);
+  const finalJeopardyTheme = new Audio("./audio/final-jeopardy-theme.mp3");
 
+  console.log(wagers);
+  console.log(maxWager1)
   const handleChange = (evt) => {
     const nextWagers = { ...wagers };
     nextWagers[evt.target.name] = parseInt(evt.target.value);
     setWagers(nextWagers);
+    console.log(wagers)
   };
 
-  const handleModeChange = () => {
-    if (wagerMode) {
-      setWagerMode(false);
-      setQuestionMode(true);
-      finalJeopardyTheme.play();
-    } else if (questionMode) {
-      setQuestionMode(false);
-      setAnswerMode(true);
+  function areWagersInvalid() {
+    let bad1 = false;
+    let bad2 = false;
+    let bad3 = false;
+    if (wagers.player1Wager > maxWager1) {
+      bad1 = true;
+      console.log("bad1 is bad")
     }
+    if (wagers.player2Wager > maxWager2) {
+      bad2 = true;
+      console.log("bad2 is bad")
+    }
+    if (wagers.player3Wager > maxWager3) {
+      bad3 = true;
+      console.log("bad3 is bad")
+    }
+    setBadWagers([bad1, bad2, bad3]);
+    console.log(`Are there bad wagers: `, badWagers.includes(true));
+
+    return bad1 || bad2 || bad3;
+  }
+
+  const handleModeChange = () => {
+    if (areWagersInvalid()) {
+      console.log("Wagers were invalid, we aren't going to answer mode");
+    } else {
+      if (wagerMode) {
+        setWagerMode(false);
+        setQuestionMode(true);
+        finalJeopardyTheme.play();
+      } else if (questionMode) {
+        setQuestionMode(false);
+        setAnswerMode(true);
+      }
+    }
+
   };
 
   function changeScore(player, result) {
@@ -92,52 +124,82 @@ export default function FinalJeopardy({
             <p className="final-jeopardy-text">Each contestant must wager:</p>
             <div className="final-jeopardy-wager-form">
               <div className="player1-wager">
-                <label className="final-jeopardy-name" htmlFor="player1Wager">
-                  {playerNames[0] ? `${playerNames[0]}: ` : "Player 1: "}
-                </label>
-                <input
-                  type="number"
-                  placeholder={`Max wager of: ${player1Score}`}
-                  className="final-jeopardy-wager-input"
-                  id="player1Wager"
-                  name="player1Wager"
-                  min={0}
-                  max={player1Score}
-                  onChange={handleChange}
-                  required
-                />
+                {maxWager1 > 0 ? (
+                  <>
+                    <label
+                      className="final-jeopardy-name"
+                      htmlFor="player1Wager"
+                    >
+                      {playerNames[0] ? `${playerNames[0]}: ` : "Player 1: "}
+                    </label>
+                    <input
+                      type="number"
+                      placeholder={`Max wager of: ${player1Score}`}
+                      className="final-jeopardy-wager-input"
+                      id="player1Wager"
+                      name="player1Wager"
+                      min={0}
+                      max={player1Score}
+                      onChange={handleChange}
+                      required
+                    />
+                    {badWagers[0] && (<p className="bad-final-wager">Your wager is invalid. Please wager again.</p>)}
+                  </>
+                ) : (
+                  <p className="bad-final-wager">{`${playerNames[0]} has a negative score and cannot participate`}</p>
+                )}
               </div>
               <div className="player2-wager">
-                <label className="final-jeopardy-name" htmlFor="player2Wager">
-                  {playerNames[1] ? `${playerNames[1]}: ` : "Player 2: "}
-                </label>
-                <input
-                  type="number"
-                  placeholder={`Max wager of: ${player2Score}`}
-                  className="final-jeopardy-wager-input"
-                  id="player2Wager"
-                  name="player2Wager"
-                  min={0}
-                  max={player2Score}
-                  onChange={handleChange}
-                  required
-                />
+                {maxWager2 > 0 ? (
+                  <>
+                    <label
+                      className="final-jeopardy-name"
+                      htmlFor="player2Wager"
+                    >
+                      {playerNames[1] ? `${playerNames[1]}: ` : "Player 2: "}
+                    </label>
+                    <input
+                      type="number"
+                      placeholder={`Max wager of: ${player2Score}`}
+                      className="final-jeopardy-wager-input"
+                      id="player2Wager"
+                      name="player2Wager"
+                      min={0}
+                      max={player2Score}
+                      onChange={handleChange}
+                      required
+                    />
+                    {badWagers[1] && (<p className="bad-final-wager">Your wager is invalid. Please wager again.</p>)}
+                  </>
+                ) : (
+                  <p className="bad-final-wager">{`${playerNames[1]} has a negative score and cannot participate`}</p>
+                )}
               </div>
               <div className="player3-wager">
-                <label className="final-jeopardy-name" htmlFor="player1Wager">
-                  {`${playerNames[2]}: ` || "Player 3: "}
-                </label>
-                <input
-                  type="number"
-                  placeholder={`Max wager of: ${player3Score}`}
-                  className="final-jeopardy-wager-input"
-                  id="player3Wager"
-                  name="player3Wager"
-                  min={0}
-                  max={player3Score}
-                  onChange={handleChange}
-                  required
-                />
+                {maxWager3 > 0 ? (
+                  <>
+                    <label
+                      className="final-jeopardy-name"
+                      htmlFor="player1Wager"
+                    >
+                      {playerNames[2] ? `${playerNames[2]}: ` : "Player 3: "}
+                    </label>
+                    <input
+                      type="number"
+                      placeholder={`Max wager of: ${player3Score}`}
+                      className="final-jeopardy-wager-input"
+                      id="player3Wager"
+                      name="player3Wager"
+                      min={0}
+                      max={player3Score}
+                      onChange={handleChange}
+                      required
+                    />
+                    {badWagers[2] && (<p className="bad-final-wager">Your wager is invalid. Please wager again.</p>)}
+                  </>
+                ) : (
+                  <p className="bad-final-wager">{`${playerNames[2]} has a negative score and cannot participate`}</p>
+                )}
               </div>
             </div>
             <div className="final-jeopardy-wager-button">
@@ -151,7 +213,9 @@ export default function FinalJeopardy({
       {questionMode && (
         <div className="final-jeopardy-question-wrapper">
           <CountDownTimer initialTime={30} action={handleModeChange} />
-          <div className="final-jeopardy-question-category-text">Category: {clue.category.title}</div>
+          <div className="final-jeopardy-question-category-text">
+            Category: {clue.category.title}
+          </div>
           <div className="final-jeopardy-question-text">{clue.question}</div>
         </div>
       )}
@@ -161,37 +225,53 @@ export default function FinalJeopardy({
           <div className="final-jeopardy-answer-text">{clue.answer}</div>
           <div className="final-jeopardy-answer-buttons">
             <div className="player1-buttons">
-              <p className="final-jeopardy-text">
-                {"Did "} {playerNames[0] || "Player 1"} {"answer correctly?"}
-              </p>
-              <button onClick={() => changeScore(0, wagers[0])}>Yes</button>
-              <button
-                onClick={() => changeScore(0, wagers["player1Wager"] * -1)}
-              >
-                No
-              </button>
+              {maxWager1 > 0 ? (
+                <>
+                  <p className="final-jeopardy-text">
+                    {"Did "} {playerNames[0] || "Player 1"}{" "}
+                    {"answer correctly?"}
+                  </p>
+                  <button onClick={() => changeScore(0, wagers[0])}>Yes</button>
+                  <button
+                    onClick={() => changeScore(0, wagers["player1Wager"] * -1)}
+                  >
+                    No
+                  </button>
+                </>
+              ) : null}
             </div>
             <div className="player2-buttons">
-              <p className="final-jeopardy-text">
-                {"Did "} {playerNames[1] || "Player 2"} {"answer correctly?"}
-              </p>
-              <button onClick={() => changeScore(1, wagers[1])}>Yes</button>
-              <button
-                onClick={() => changeScore(1, wagers["player2Wager"] * -1)}
-              >
-                No
-              </button>
+              {maxWager2 > 0 ? (
+                <>
+                  <p className="final-jeopardy-text">
+                    {"Did "} {playerNames[1] || "Player 2"}{" "}
+                    {"answer correctly?"}
+                  </p>
+                  <button onClick={() => changeScore(1, wagers[1])}>Yes</button>
+                  <button
+                    onClick={() => changeScore(1, wagers["player2Wager"] * -1)}
+                  >
+                    No
+                  </button>
+                </>
+              ) : null}
             </div>
+
             <div className="player3-buttons">
-              <p className="final-jeopardy-text">
-                {"Did "} {playerNames[2] || "Player 3"} {"answer correctly?"}
-              </p>
-              <button onClick={() => changeScore(2, wagers[2])}>Yes</button>
-              <button
-                onClick={() => changeScore(2, wagers["player3Wager"] * -1)}
-              >
-                No
-              </button>
+              {maxWager3 > 0 ? (
+                <>
+                  <p className="final-jeopardy-text">
+                    {"Did "} {playerNames[2] || "Player 3"}{" "}
+                    {"answer correctly?"}
+                  </p>
+                  <button onClick={() => changeScore(2, wagers[2])}>Yes</button>
+                  <button
+                    onClick={() => changeScore(2, wagers["player3Wager"] * -1)}
+                  >
+                    No
+                  </button>
+                </>
+              ) : null}
             </div>
             <div className="final-submit-button">
               <button onClick={finishGame}>Calculate Winner</button>

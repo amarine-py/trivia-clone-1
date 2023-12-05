@@ -12,6 +12,7 @@ export default function DailyDouble({
   const [answerMode, setAnswerMode] = useState(false);
   const [value, setValue] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
+  const [badWager, setBadWager] = useState(false);
   const playerNames = useContext(PlayerContext);
   const player = getPlayerName();
   const maxWager = Math.max(1000, scores[turn]);
@@ -30,7 +31,7 @@ export default function DailyDouble({
 
   function onWager() {
     if (value > maxWager) {
-      console.log(`You cannot wager more than: ${maxWager}`);
+      setBadWager(true);
       return;
     }
     setAnswerMode(true);
@@ -77,6 +78,7 @@ export default function DailyDouble({
           <div className="daily-double-answer-mode">
             <CountDownTimer initialTime={10} />
             <p className="daily-double-answer-mode-wager-text">{`Your wager: $${value}`}</p>
+            <p className="daily-double-answer-mode-clue-text">{`Category: ${clue.category.title}`}</p>
             <p className="daily-double-answer-mode-clue-text">
               {clue.question}
             </p>
@@ -98,7 +100,7 @@ export default function DailyDouble({
             <div className="daily-double-wager">
               <p>{player}</p>
               <p>{`Category: ${clue.category.title}`}</p>
-              <p>{`You can wager anything up to: $${scores[turn]}.`}</p>
+              <p>You can wager anything up to: {`$${maxWager}`}.</p>
               <p>How much would you like to wager?</p>
               {`$ `}
               <input
@@ -112,6 +114,7 @@ export default function DailyDouble({
                 onChange={handleChange}
                 required
               />
+              {badWager && (<p className="bad-wager">You can only wager up to: {`$${maxWager}`}.</p>)}
             </div>
             <div className="daily-double-wager-buttons">
               <button onClick={onWager}>Wager</button>
