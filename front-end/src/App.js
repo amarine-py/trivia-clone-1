@@ -4,7 +4,7 @@ import Game from "./pages/Game";
 import RegisterGame from "./pages/RegisterGame";
 import PlayerContext from "./context/PlayerContext";
 import About from "./pages/About";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
 
 function App() {

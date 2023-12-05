@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export default function NavBar() {
   return (
     <header>
-      <img id="logo" src=""></img>
+      <img id="logo" src="" alt="logo"></img>
       <h1>Jeopardy-Style Trivia Clone</h1>
       <nav>
         <ul>

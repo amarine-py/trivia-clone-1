@@ -31,7 +31,6 @@ export default function RegisterGame({ registerPlayers }) {
     } else if (player === 2) {
       setPlayer3(name);
     }
-    console.log([player1, player2, player3])
   }
 
   return (

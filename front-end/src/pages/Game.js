@@ -21,6 +21,7 @@ export default function Game({ setPlayerNames }) {
   const [round, setRound] = useState(1);
   const [loaded, setLoaded] = useState(false);
   const [winner, setWinner] = useState("");
+  // eslint-disable-next-line no-unused-vars
   const [dailyDoublesLoaded, setDailyDoublesLoaded] = useState(false);
   const [error, setError] = useState(false);
   const [errorStatus, setErrorStatus] = useState({
@@ -29,7 +30,7 @@ export default function Game({ setPlayerNames }) {
   });
   const [reload, setReload] = useState(false);
   let playerNames = useContext(PlayerContext);
-  const boardFillAudio = new Audio("./audio/board-fill-sound.mp3");
+  // const boardFillAudio = new Audio("./audio/board-fill-sound.mp3");
 
   useEffect(() => {
     // if it's round 3, we go to Final Jeopardy
@@ -49,7 +50,6 @@ export default function Game({ setPlayerNames }) {
         setQuestions(data);
         addDailyDoubles(round, data);
         if (clueDataLoaded(data)) {
-          console.log(`Data: ${data}`);
           setLoaded(true);
         } else {
           setErrorStatus({
@@ -63,6 +63,7 @@ export default function Game({ setPlayerNames }) {
       setUnanswered(numQuestions);
       // boardFillAudio.play();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [round, reload]);
 
   useEffect(() => {
@@ -73,6 +74,7 @@ export default function Game({ setPlayerNames }) {
       setDailyDoublesLoaded(false);
       setRound(round + 1);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [unanswered]);
 
   function doReload() {
@@ -171,6 +173,8 @@ export default function Game({ setPlayerNames }) {
         case 2:
           winner = "Player 3";
           break;
+        default:
+          break
       }
     }
     setWinner(winner);
