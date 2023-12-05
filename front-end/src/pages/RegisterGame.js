@@ -13,6 +13,7 @@ export default function RegisterGame({ registerPlayers }) {
     playerNames.push(player2 ? player2 : "Player 2");
     playerNames.push(player3 ? player3 : "Player 3");
     registerPlayers(playerNames);
+    console.log(playerNames);
     navigate("/new-game");
   };
 
@@ -27,10 +28,10 @@ export default function RegisterGame({ registerPlayers }) {
       setPlayer1(name);
     } else if (player === 1) {
       setPlayer2(name);
-    } else if (player === 3) {
+    } else if (player === 2) {
       setPlayer3(name);
     }
-    console.log(player1)
+    console.log([player1, player2, player3])
   }
 
   return (

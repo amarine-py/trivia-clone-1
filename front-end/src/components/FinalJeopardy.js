@@ -26,13 +26,10 @@ export default function FinalJeopardy({
   const maxWager3 = Math.max(player3Score, 0);
   const finalJeopardyTheme = new Audio("./audio/final-jeopardy-theme.mp3");
 
-  console.log(wagers);
-  console.log(maxWager1);
   const handleChange = (evt) => {
     const nextWagers = { ...wagers };
     nextWagers[evt.target.name] = parseInt(evt.target.value);
     setWagers(nextWagers);
-    console.log(wagers);
   };
 
   function areWagersInvalid() {
@@ -41,25 +38,20 @@ export default function FinalJeopardy({
     let bad3 = false;
     if (wagers.player1Wager > maxWager1) {
       bad1 = true;
-      console.log("bad1 is bad");
     }
     if (wagers.player2Wager > maxWager2) {
       bad2 = true;
-      console.log("bad2 is bad");
     }
     if (wagers.player3Wager > maxWager3) {
       bad3 = true;
-      console.log("bad3 is bad");
     }
     setBadWagers([bad1, bad2, bad3]);
-    console.log(`Are there bad wagers: `, badWagers.includes(true));
 
     return bad1 || bad2 || bad3;
   }
 
   const handleModeChange = () => {
     if (areWagersInvalid()) {
-      console.log("Wagers were invalid, we aren't going to answer mode");
     } else {
       if (wagerMode) {
         setWagerMode(false);

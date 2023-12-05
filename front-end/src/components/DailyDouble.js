@@ -16,12 +16,8 @@ export default function DailyDouble({
   const playerNames = useContext(PlayerContext);
   const player = getPlayerName();
   const maxWager = Math.max(1000, scores[turn]);
-  const correctAnswerAudio = new Audio(
-    "./audio/right-answer-sound.mp3"
-  );
-  const wrongAnswerAudio = new Audio(
-    "./audio/wrong-answer-sound.mp3"
-  );
+  const correctAnswerAudio = new Audio("./audio/right-answer-sound.mp3");
+  const wrongAnswerAudio = new Audio("./audio/wrong-answer-sound.mp3");
   let newValue;
 
   const handleChange = (evt) => {
@@ -114,7 +110,11 @@ export default function DailyDouble({
                 onChange={handleChange}
                 required
               />
-              {badWager && (<p className="bad-wager">You can only wager up to: {`$${maxWager}`}.</p>)}
+              {badWager && (
+                <p className="bad-wager">
+                  You can only wager up to: {`$${maxWager}`}.
+                </p>
+              )}
             </div>
             <div className="daily-double-wager-buttons">
               <button onClick={onWager}>Wager</button>
