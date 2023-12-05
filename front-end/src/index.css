@@ -706,9 +706,9 @@ button:hover {
   text-align: center;
   padding: 0;
   margin: 0;
-  margin-bottom: 150px;
+  margin-bottom: 50px;
   border: 3px solid white;
-  height: 75%;
+  height: 85%;
   width: 50%;
 }
 
@@ -729,7 +729,7 @@ button:hover {
 
 .final-jeopardy-question-text2 {
   font-size: 1.5rem;
-  margin-bottom: 50px;
+  margin-bottom: 15px;
 }
 
 .final-jeopardy-answer-text {
@@ -825,10 +825,15 @@ button:hover {
   align-items: center;
   justify-content: flex-start;
   text-align: center;
-  padding: 75px;
+  padding: 25px;
   margin: 0;
   border: 3px solid white;
   height: 100%;
+  width: 100%;
+}
+
+.final-jeopardy-answer-buttons {
+  height: 85%;
   width: 100%;
 }
 
@@ -907,3 +912,15 @@ button:hover {
   margin: 15px auto;
 }
 
+.error-message-wrapper {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 80%;
+  width: 60%;
+  border: 3px solid red;
+  margin-top: 75px;
+}

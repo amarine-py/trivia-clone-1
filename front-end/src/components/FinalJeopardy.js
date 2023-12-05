@@ -93,7 +93,7 @@ export default function FinalJeopardy({
             <div className="final-jeopardy-wager-form">
               <div className="player1-wager">
                 <label className="final-jeopardy-name" htmlFor="player1Wager">
-                  {playerNames[0] || "Player 1:"}
+                  {playerNames[0] ? `${playerNames[0]}: ` : "Player 1: "}
                 </label>
                 <input
                   type="number"
@@ -109,7 +109,7 @@ export default function FinalJeopardy({
               </div>
               <div className="player2-wager">
                 <label className="final-jeopardy-name" htmlFor="player2Wager">
-                  {playerNames[1] || "Player 2:"}
+                  {playerNames[1] ? `${playerNames[1]}: ` : "Player 2: "}
                 </label>
                 <input
                   type="number"
@@ -125,7 +125,7 @@ export default function FinalJeopardy({
               </div>
               <div className="player3-wager">
                 <label className="final-jeopardy-name" htmlFor="player1Wager">
-                  {playerNames[2] || "Player 3:"}
+                  {`${playerNames[2]}: ` || "Player 3: "}
                 </label>
                 <input
                   type="number"

@@ -10,6 +10,7 @@ import PlayerContext from "../context/PlayerContext";
 import FinalJeopardy from "../components/FinalJeopardy";
 import DeclareWinner from "../components/DeclareWinner";
 import DebugTools from "../components/DebugTools";
+import ErrorMessage from "../components/ErrorMessage";
 
 export default function Game({ setPlayerNames }) {
   const numQuestions = 20;
@@ -20,72 +21,82 @@ export default function Game({ setPlayerNames }) {
   const [round, setRound] = useState(1);
   const [loaded, setLoaded] = useState(false);
   const [winner, setWinner] = useState("");
+  const [dailyDoublesLoaded, setDailyDoublesLoaded] = useState(false);
+  const [error, setError] = useState(false);
+  const [errorStatus, setErrorStatus] = useState({
+    errorTitle: null,
+    errorMessage: null,
+  });
+  const [reload, setReload] = useState(false);
   let playerNames = useContext(PlayerContext);
-  const boardFillAudio = new Audio(
-    "./audio/board-fill-sound.mp3"
-  );
+  const boardFillAudio = new Audio("./audio/board-fill-sound.mp3");
 
   useEffect(() => {
     // if it's round 3, we go to Final Jeopardy
+    setLoaded(false);
     if (round === 3) {
-      setLoaded(false);
-      setQuestions([]);
+      setError(false);
       fetchRandomFinalJeopardyQuestion().then((data) => {
-        let temp = [...data];
-        setQuestions(temp);
+        setQuestions(data);
+        setLoaded(true);
         return;
       });
     }
     // if it's not round 3, we fetch questions, set daily doubles, and load the board
     if (round < 3) {
-      setQuestions([]);
-      if (setLoaded) setLoaded(false);
+      setError(false);
       fetchRandomQuestionsByNumAndRound(20, round).then((data) => {
-        let temp = [...data];
-        setQuestions(temp);
-        addDailyDoubles(round, temp);
+        setQuestions(data);
+        addDailyDoubles(round, data);
+        if (clueDataLoaded(data)) {
+          console.log(`Data: ${data}`);
+          setLoaded(true);
+        } else {
+          setErrorStatus({
+            errorTitle: "API Data Not Loaded",
+            errorMessage:
+              "The data did not load in time. Press the button below to retry.",
+          });
+          setError(true);
+        }
       });
       setUnanswered(numQuestions);
       // boardFillAudio.play();
     }
-  }, [round]);
-
-  useEffect(() => {
-    // we don't want to try to load the board until the questions have been fetched
-    // this means it will take around 10sec to load before each round
-    setTimeout(() => {
-      if (clueDataLoaded()) {
-        setLoaded(true);
-      } else {
-        setRound(3);
-        setRound(round);
-      }
-    }, 4000);
-  }, [questions]);
+  }, [round, reload]);
 
   useEffect(() => {
     // if there are no more unanswered questions, we increment the round
     if (unanswered === 0) {
       setQuestions([]);
+      setLoaded(false);
+      setDailyDoublesLoaded(false);
       setRound(round + 1);
     }
   }, [unanswered]);
 
-  function clueDataLoaded() {
+  function doReload() {
+    setError(false);
+    setLoaded(false);
+    setQuestions([]);
+    setReload(!reload);
+  }
+
+  function clueDataLoaded(data) {
     // this function checks to make sure the questions have been fetched
+    console.log(data);
     let count = 0;
-    if (round === 3 && questions.length === 1) {
+    if (round === 3 && data.length === 1) {
       return true;
     }
     for (let i = 0; i < numQuestions; i++) {
-      if (questions[i]?.id) {
-        count++;
+      if (data.includes(undefined)) {
+        console.log("Not loaded!!!");
+        return false;
+      } else {
+        return true;
       }
     }
-    if (count === numQuestions) {
-      return true;
-    }
-    return false;
   }
 
   function addDailyDoubles(num, data) {
@@ -98,14 +109,21 @@ export default function Game({ setPlayerNames }) {
         randomClue = Math.floor(Math.random() * numQuestions);
       } while (numTracker.includes(randomClue));
       numTracker.push(randomClue);
-      newQuestions
-        ? (newQuestions[randomClue].dailyDouble = true)
-        : console.log("Did not work!");
+      if (newQuestions) {
+        newQuestions[randomClue].dailyDouble = true;
+      } else {
+        setErrorStatus({
+          errorTitle: "DailyDouble did not work",
+          errorMessage: "Unable to load the daily double question",
+        });
+        setError(true);
+      }
     }
     setQuestions([...newQuestions]);
     for (let q of newQuestions) {
       if (q?.dailyDouble) {
-        console.log(`Daily Double: ${q.category.title}`)
+        console.log(`Daily Double: ${q.category.title}`);
+        setDailyDoublesLoaded(true);
       }
     }
   }
@@ -160,12 +178,34 @@ export default function Game({ setPlayerNames }) {
     setWinner(winner);
   }
 
+  if (error) {
+    console.log("Error");
+    return (
+      <ErrorMessage
+        errorStatus={errorStatus}
+        setRound={setRound}
+        round={round}
+        setError={setError}
+        doReload={doReload}
+      />
+    );
+  }
+
   if (winner) {
     return <DeclareWinner winner={winner} />;
   }
 
   return (
     <div className="game-wrapper">
+      {error ? (
+        <ErrorMessage
+          errorStatus={errorStatus}
+          setRound={setRound}
+          round={round}
+          setError={setError}
+          reload={reload}
+        />
+      ) : null}
       {loaded && (
         <>
           {round === 3 ? (

@@ -9,12 +9,29 @@ export default function RegisterGame({ registerPlayers }) {
 
   const register = () => {
     let playerNames = [];
-    playerNames.push(player1);
-    playerNames.push(player2);
-    playerNames.push(player3);
+    playerNames.push(player1 ? player1 : "Player 1");
+    playerNames.push(player2 ? player2 : "Player 2");
+    playerNames.push(player3 ? player3 : "Player 3");
     registerPlayers(playerNames);
     navigate("/new-game");
   };
+
+  const onChange = (evt, player) => {
+    let name;
+    if (evt.target.value === "") {
+      name = `Player ${player + 1}`;
+    } else {
+      name = evt.target.value;
+    }
+    if (player === 0) {
+      setPlayer1(name);
+    } else if (player === 1) {
+      setPlayer2(name);
+    } else if (player === 3) {
+      setPlayer3(name);
+    }
+    console.log(player1)
+  }
 
   return (
     <div className="register-wrapper">
@@ -27,7 +44,7 @@ export default function RegisterGame({ registerPlayers }) {
             className="register-input"
             id="player1"
             name="player1"
-            onChange={(evt) => setPlayer1(evt.target.value)}
+            onChange={(evt) => onChange(evt, 0)}
             required
           />
         </div>
@@ -38,7 +55,7 @@ export default function RegisterGame({ registerPlayers }) {
             className="register-input"
             id="player2"
             name="player2"
-            onChange={(evt) => setPlayer2(evt.target.value)}
+            onChange={(evt) => onChange(evt, 1)}
             required
           />
         </div>
@@ -49,7 +66,7 @@ export default function RegisterGame({ registerPlayers }) {
             className="register-input"
             id="player3"
             name="player3"
-            onChange={(evt) => setPlayer3(evt.target.value)}
+            onChange={(evt) => onChange(evt, 2)}
             required
           />
         </div>
