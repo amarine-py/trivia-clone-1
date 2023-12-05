@@ -945,3 +945,27 @@ button:hover {
   border: 3px solid red;
   margin-top: 75px;
 }
+
+.about-wrapper {
+  color: white;
+  font-size: 1.4rem;
+  width: 50%;
+  background-color: #060ce9;
+  padding: 20px;
+  border: solid white 5px;
+  border-radius: 10px;
+}
+
+.about-wrapper a {
+  text-decoration: none;
+  color:#ffcc00;
+  cursor: pointer;
+}
+
+.about-heading {
+  font-family: "Swiss-911";
+  color: #ffcc00;
+  font-size: 3rem;
+  text-shadow: 5px 5px black;
+  margin: 10px;
+}

@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Game from "./pages/Game";
 import RegisterGame from "./pages/RegisterGame";
 import PlayerContext from "./context/PlayerContext";
+import About from "./pages/About";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 
@@ -27,6 +28,7 @@ function App() {
             path="/new-game"
             element={<Game setPlayerNames={setPlayerNames} />}
           />
+          <Route path="/about" element={<About />} />
         </Routes>
       </div>
     </PlayerContext.Provider>

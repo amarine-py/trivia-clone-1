@@ -11,10 +11,10 @@ export default function NavBar() {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="">New Game</Link>
+            <Link to="/register-game">New Game</Link>
           </li>
           <li>
-            <Link to="">About</Link>
+            <Link to="/about">About</Link>
           </li>
         </ul>
       </nav>
